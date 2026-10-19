@@ -181,3 +181,13 @@ void hsv_to_rgb(image im)
         }
     }
 }
+
+void scale_image(image im, int c, float v) {
+    for (int y = 0; y < im.h; ++y) {
+        for (int x = 0; x < im.w; ++x) {
+            float pixel = get_pixel(im, x, y, c);
+            pixel = pixel * v;
+            set_pixel(im, x, y, c, pixel);
+        }
+    }
+}
