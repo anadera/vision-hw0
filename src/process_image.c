@@ -44,7 +44,15 @@ image rgb_to_grayscale(image im)
 {
     assert(im.c == 3);
     image gray = make_image(im.w, im.h, 1);
-    // TODO Fill this in
+    for (int y = 0; y < im.h; ++y) {
+        for (int x = 0; x < im.w; ++x) {
+            float r = get_pixel(im, x, y, 0);
+            float g = get_pixel(im, x, y, 1);
+            float b = get_pixel(im, x, y, 2);
+            float scaled = 0.299 * r + 0.587 * g + .114 * b;
+            set_pixel(gray, x, y, 0, scaled);
+        }
+    }
     return gray;
 }
 
