@@ -29,7 +29,14 @@ void set_pixel(image im, int x, int y, int c, float v)
 image copy_image(image im)
 {
     image copy = make_image(im.w, im.h, im.c);
-    // TODO Fill this in
+    for (int c = 0; c < im.c; ++c) {
+        for (int y = 0; y < im.h; ++y) {
+            for (int x = 0; x < im.w; ++x) {
+                float pixel = get_pixel(im, x, y, c);
+                set_pixel(copy, x, y, c, pixel);
+            }
+        }
+    }
     return copy;
 }
 
