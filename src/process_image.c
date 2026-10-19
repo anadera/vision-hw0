@@ -6,13 +6,24 @@
 
 float get_pixel(image im, int x, int y, int c)
 {
-    // TODO Fill this in
-    return 0;
+    // clamp if the pixel out of range
+    c = c < 0 ? 0 : c >= im.c ? im.c - 1 : c;
+    y = y < 0 ? 0 : y >= im.h ? im.h - 1 : y;
+    x = x < 0 ? 0 : x >= im.w ? im.w - 1 : x;
+
+    int index = c * im.w * im.h + y * im.w + x;
+    return im.data[index];
 }
 
 void set_pixel(image im, int x, int y, int c, float v)
 {
-    // TODO Fill this in
+    if (x >= 0 && x < im.w &&
+        y >= 0 && y < im.h &&
+        c >= 0 && c < im.c)
+    {
+        int index = c * im.w * im.h + y * im.w + x;
+        im.data[index] = v;
+    }
 }
 
 image copy_image(image im)
